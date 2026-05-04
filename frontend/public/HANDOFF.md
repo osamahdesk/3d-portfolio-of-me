@@ -231,7 +231,7 @@ const { lang, setLang, toggle } = useLang();
 - محادثة معروضة تلقائيًا عند scroll داخل الرؤية (IntersectionObserver): user bubble → typing dots → bot reply → loop.
 - إذا أراد العميل تشغيل الشات لاحقًا:
   1. احذف طبقات الحماية من `<input>` وأزل `disabled` من الزر.
-  2. أضف endpoint `/api/chat` مع `emergentintegrations` (اطلب `integration_playbook_expert_v2` عن "Claude Sonnet 4.5" أو "GPT-5.2" + استدعِ `Emergent LLM key`).
+  2. أضف endpoint `/api/chat` موصول بمزوّد LLM مفضّل (Claude Sonnet 4.5 / GPT-5.2 …).
 - **بديل منخفض الجهد** مُوصَى به: تحويل الحقل إلى "أشعرني عند الإطلاق" — يحفظ البريد في نفس جدول `contacts` مع `source: ai-waitlist`.
 
 ### 6.7 Process (`components/Process.jsx`)
@@ -363,8 +363,8 @@ curl -X POST "$API_URL/api/contact" -H "Content-Type: application/json" \
 
 ### كيف أشغّل الشات فعليًا؟
 1. أزل طبقات الحماية من `AIChat.jsx` (input: أزل readOnly, onKeyDown, onBeforeInput, onFocus; button: أزل disabled).
-2. اطلب من المساعد: **"ادمج LLM في /api/chat باستخدام Emergent LLM key + Claude Sonnet 4.5"**.
-3. سيتم استخدام `integration_playbook_expert_v2` + `emergent_integrations_manager`.
+2. اطلب: **"ادمج LLM في /api/chat باستخدام Claude Sonnet 4.5"**.
+3. سيتولّى المساعد إعداد المفتاح المناسب من مزوّد LLM المختار.
 
 ### كيف أُضيف Google Analytics / OG image؟
 - Meta tags في `/app/frontend/public/index.html` (قسم `<head>`).

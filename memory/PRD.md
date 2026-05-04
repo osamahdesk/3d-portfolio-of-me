@@ -44,7 +44,7 @@ User provided a reference site (skeleton-rebuild NomadaToast clone) and a scroll
 - **P1**: Replace placeholder portrait monogram with a real photo.
 - **P2**: Optional rate-limit + spam honeypot on `/api/contact`.
 - **P2**: Admin endpoint + simple page to read submitted messages (auth-gated).
-- **P2**: Real AI chat integration (replace disabled preview with working LLM — emergentintegrations).
+- **P2**: Real AI chat integration (replace disabled preview with a working LLM provider).
 - **P3**: OG image + Twitter card metadata tuned for sharing.
 - **P3**: Wire `Download CV` PDF into hero/about.
 
