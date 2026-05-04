@@ -1,0 +1,2 @@
+/* App-level wrappers kept minimal; see index.css for design system */
+.App { background: var(--ink-0); }
