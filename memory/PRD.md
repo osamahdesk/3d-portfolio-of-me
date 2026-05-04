@@ -22,27 +22,31 @@ User provided a reference site (skeleton-rebuild NomadaToast clone) and a scroll
 5. Backend contact form persisted to MongoDB.
 
 ## What's Been Implemented (2026-05-04)
-- Scroll-scrubbed MP4 hero (`ScrollHero.jsx`) with 4 cue progression + progress bar + cue dots.
+- Scroll-scrubbed MP4 hero (`ScrollHero.jsx`) — now with **dual-layer video** (sharp foreground + blurred background) + **frosted glass veil** + scanlines to mask low-res compression artifacts.
+- Bilingual **AR ↔ EN** language toggle (`lib/i18n.jsx`, `components/LangToggle.jsx`). `lang` persisted in `localStorage`, switches `html[dir]` + font stack (Fraunces/Manrope for EN, Reem Kufi/Tajawal for AR).
+- Name corrected to **أسامة الهويش / Osama Al-Huwaish** everywhere.
+- Contact updates: Instagram `@0r.ei` → `https://instagram.com/0r.ei`, email `osamadevlopment@gmail.com`. Fake socials removed.
+- `AIChat.jsx` — premium preview section (glass panel, rotating conic-gradient border, typing dots, auto-playing fake conversation, status card w/ offline dot + LLM model + latency). Input is `readOnly` + keyboard blocked + `onFocus` blur + "Currently closed" toast on every interaction; send button is disabled.
+- Case-study pages `/projects/hsk` and `/projects/ai-bot` (`pages/ProjectCase.jsx`) — hero + overview + stack + stats (HSK) / roadmap (AI Bot) + features/capabilities + architecture (HSK) + learnings (HSK) + "Next project" cross-link + Instagram CTA.
+- React Router v7 routes: `/` → `Portfolio`, `/projects/:slug` → `ProjectCase`.
 - `Pillars.jsx` — 4 hover-inverting pillar cards.
 - `TechStack.jsx` — infinite marquee of tech stack on dark.
-- `Projects.jsx` — featured HSK App card (stack, lead, features, 4 stats) + AI Bot vision list.
+- `Projects.jsx` — featured HSK card + AI Bot vision + `View case study` CTA to each case page.
 - `Process.jsx` — 4-step research/build/test/publish on warm panel.
 - `Stats.jsx` — IntersectionObserver count-up + rotating testimonial.
 - `About.jsx` — monogram portrait + facts grid + languages (AR/EN/ZH).
-- `Contact.jsx` — form → `POST /api/contact` → Mongo, sonner toasts.
+- `Contact.jsx` — form → `POST /api/contact` → Mongo, sonner toasts; Instagram + Email social tiles.
 - `Footer.jsx` — XXL brand signature + sitemap + meta.
 - Backend: `/api/` health, `/api/contact` POST+GET, `/api/status` (retained). `_id` excluded everywhere.
-- Tests: `/app/backend/tests/test_portfolio_api.py` — 8/8 pass.
+- Tests: `/app/backend/tests/test_portfolio_api.py` — 8/8 pass. Testing agent reports 100% backend / ~100% frontend.
 
 ## Prioritized Backlog
-- **P1**: Replace placeholder social URLs (GitHub/LinkedIn/YT/X) with real handles.
-- **P1**: Add real portrait image to About section (currently stylized monogram).
+- **P1**: Replace placeholder portrait monogram with a real photo.
 - **P2**: Optional rate-limit + spam honeypot on `/api/contact`.
 - **P2**: Admin endpoint + simple page to read submitted messages (auth-gated).
-- **P2**: English (LTR) toggle for international audience.
+- **P2**: Real AI chat integration (replace disabled preview with working LLM — emergentintegrations).
 - **P3**: OG image + Twitter card metadata tuned for sharing.
-- **P3**: Dedicated project detail pages (/projects/hsk, /projects/ai-bot).
-- **P3**: Newsletter/waitlist (if AI Bot launches publicly).
+- **P3**: Wire `Download CV` PDF into hero/about.
 
 ## Next Tasks
 1. Collect real social handles + portrait photo from Osama.

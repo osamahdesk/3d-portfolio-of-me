@@ -116,6 +116,8 @@ const content = {
       lead: "وكيل ذكاء اصطناعي متقدّم يُقدّم المساعدة في المهام التعليميّة والبرمجيّة — خطوة أولى نحو مساعد متكامل يفهم، يشرح، وينفّذ.",
       longLead: "مشروع بحث-تطوير لبناء وكيل ذكاء اصطناعي يُدمج فهم السياق، معالجة اللغات الطبيعيّة، وتحليل البيانات لخدمة طلّاب ومطوّرين عرب.",
       status: "قيد البناء · نسخة داخليّة",
+      stack: ["Python", "FastAPI", "LLM Orchestration", "React", "MongoDB", "Docker"],
+      hosting: "استضافة خاصّة · استدلال داخلي",
       visionItems: [
         "وكيل شامل قادر على فهم احتياجات المستخدمين في التعليم والبرمجة وتلبيتها.",
         "دمج تقنيات معالجة اللغات الطبيعيّة (NLP) لتجربة تعليميّة مخصّصة وتفاعليّة.",
@@ -374,6 +376,8 @@ const content = {
       lead: "An advanced AI agent that assists with educational and programming tasks — a first step toward a complete assistant that understands, explains, and ships.",
       longLead: "An R&D project to build an AI agent combining context understanding, NLP, and analytics — designed to serve Arab students and developers first.",
       status: "In build · internal preview",
+      stack: ["Python", "FastAPI", "LLM Orchestration", "React", "MongoDB", "Docker"],
+      hosting: "Private hosting · internal inference",
       visionItems: [
         "A general agent that can understand and fulfil user needs in education and programming.",
         "Integrate NLP to deliver a personalised and interactive learning experience.",
