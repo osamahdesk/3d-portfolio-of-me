@@ -1,0 +1,41 @@
+{
+  "summary": "Iteration 2 verification of follow-up features (AR/EN toggle, correct name Al-Huwaish, Instagram 0r.ei, email osamadevlopment@gmail.com, premium disabled AI chat, HSK + AI Bot case-study routes). Backend regression 8/8 pytest passed. Frontend mostly passes except /projects/ai-bot crashes due to missing 'stack' array in projectAIBot content — the ProjectCase OVERVIEW section calls project.stack.map() on an undefined value.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "ProjectCase (/projects/ai-bot)",
+        "issue": "White/blank page — React runtime error: 'Cannot read properties of undefined (reading map)' at ProjectCase.jsx line 101 (project.stack.map). The AI Bot project definition in /app/frontend/src/lib/i18n.jsx (both ar and en) has no `stack` array, but ProjectCase.jsx renders a STACK section for every project. Impact: case-next-link from HSK → AI Bot crashes; direct URL /projects/ai-bot also crashes; data-testid='case-hero' never renders on the AI Bot page.",
+        "selector": "[data-testid=\"case-hero\"]",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_portfolio_api.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Add a `stack` array to projectAIBot in /app/frontend/src/lib/i18n.jsx for BOTH ar and en locales (e.g. ['Python','LLM','FastAPI','React','MongoDB']) OR guard the OVERVIEW/STACK section in /app/frontend/src/pages/ProjectCase.jsx with `{project.stack && ( ... )}`. Recommended: add the stack array so the AI Bot case still shows its technical stack section consistent with HSK.",
+    "After fix, re-test direct navigation to /projects/ai-bot and case-next-link click from /projects/hsk → should render case-hero without React error."
+  ],
+  "critical_code_review_comments": [
+    "ProjectCase.jsx line 101 directly calls project.stack.map without null check — brittle assumption. Content in i18n.jsx must include `stack` for every project (HSK has it, AI Bot doesn't).",
+    "ProjectCase.jsx (~270 lines) has multiple isHSK/!isHSK conditional branches — as more projects are added, consider a typed project schema with required/optional fields and a single renderer that gracefully skips missing sections.",
+    "LanguageProvider in /app/frontend/src/lib/i18n.jsx writes to localStorage on every lang change; fine, but document.documentElement.setAttribute is called only on mount/toggle — for the very first paint (SSR not in use here) this is OK in CRA.",
+    "AIChat.jsx: the readOnly input with onKeyDown/onFocus/onBeforeInput blocking is a good pattern; consider also adding `tabIndex={-1}` OR keeping focus but visually disabled — currently a keyboard user can focus but cannot type (expected per spec)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100%", "frontend": "~92% (1 critical route broken: /projects/ai-bot)"},
+  "test_credentials": "N/A — no auth",
+  "seed_data_creation": "Extra TEST_ prefixed contact entry 'TEST Playwright Iter2' created via contact form submission during testing.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Backend pytest file at /app/backend/tests/test_portfolio_api.py (8/8 pass). Frontend verified on preview URL: (1) brand shows 'أسامة الهويش' (correct; old 'الحواش' absent); (2) lang-toggle flips html[dir] rtl↔ltr, writes localStorage 'oh_lang', flips nav labels to 'Projects'/'Contact me' and back; (3) hero video scrubs forward with scrollY; (4) chat-section has all required testids (chat-panel, chat-status-card, chat-input, chat-send-btn), shows 'مغلق حاليًا'/'Currently closed', send button disabled, input readOnly — typing produces '' as value; chat-bubble-user visible on scroll into view; (5) projects section has hsk-case-link → /projects/hsk (works, case-hero renders) and ai-bot-case-link → /projects/ai-bot (BROKEN, blank page); (6) case-instagram-btn href = https://instagram.com/0r.ei; (7) contact section social-instagram href https://instagram.com/0r.ei (text includes '0r.ei'); social-email mailto:osamadevlopment@gmail.com; contact-email-btn text contains 'osamadevlopment@gmail.com'; (8) contact form submits successfully and success toast appears. ONLY failure is the ai-bot case page.",
+  "rca_of_the_issue": "Root cause: /app/frontend/src/lib/i18n.jsx defines projectHSK with a `stack` array but projectAIBot omits `stack` entirely (both ar and en locales). /app/frontend/src/pages/ProjectCase.jsx:101 unconditionally calls `project.stack.map(s => ...)` for every project in the OVERVIEW + STACK section. When slug='ai-bot', stack is undefined → TypeError → entire ProjectCase tree unmounts → blank page and no data-testid='case-hero'. Reproduction: navigate directly to https://<preview-url>/projects/ai-bot OR click data-testid='case-next-link' from /projects/hsk. Mitigation (pick one): (a) add `stack: ['Python','LLM Orchestration','FastAPI','React','MongoDB']` (or equivalent) to projectAIBot in BOTH ar and en blocks of i18n.jsx, and optionally add `hosting: 'Private inference'`; (b) defensively render `{project.stack && (<div>…project.stack.map…</div>)}` in ProjectCase.jsx. Preferred = (a) for UX parity with HSK case."
+}
