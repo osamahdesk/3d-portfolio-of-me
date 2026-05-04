@@ -26,7 +26,7 @@ const content = {
       tagline: "مطوّر برمجيات · باحث في الذكاء الاصطناعي",
       summary:
         "طالب طموح يمتلك خلفية قوية في تطوير البرمجيات والذكاء الاصطناعي. أبني أدوات تعليميّة ذكيّة ووكلاء ذكاء اصطناعي تحلّ مشاكل واقعيّة.",
-      basedShort: "غزة → بكين",
+      basedShort: "→ بكين",
       targetSchool: "معهد بكين للتكنولوجيا (BIT)",
       currentRole: "طالب · باحث",
       locationLabel: "الموقع الحالي",
@@ -286,7 +286,7 @@ const content = {
       tagline: "Software engineer · AI researcher",
       summary:
         "An ambitious student with a strong background in software engineering and AI. I build practical education tools and AI agents that solve real problems.",
-      basedShort: "Gaza → Beijing",
+      basedShort: "→ Beijing",
       targetSchool: "Beijing Institute of Technology (BIT)",
       currentRole: "Student · Researcher",
       locationLabel: "Current position",

@@ -703,7 +703,7 @@ The chat is a deliberate "closed preview". To make it functional:
 
 <sub>
 
-Built with care from Gaza, with eyes on Beijing. <br />
+Built with care, with eyes on Beijing. <br />
 *Made on the [Emergent](https://emergent.sh) platform.*
 
 </sub>
