@@ -704,7 +704,7 @@ The chat is a deliberate "closed preview". To make it functional:
 <sub>
 
 Built with care, with eyes on Beijing. <br />
-*Made on the [Emergent](https://emergent.sh) platform.*
+*Made on the [OSAMAH Ai Agent](https://soon.soon) platform.*
 
 </sub>
 
